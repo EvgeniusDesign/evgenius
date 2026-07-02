@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Дякую за заявку — Євгеній Ніколайчук</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="preload" href="fonts/DrukCyr-Medium.woff2" as="font" type="font/woff2" crossorigin/>
+<style>
+@font-face{
+  font-family:"Druk Cyr";
+  src:url("fonts/DrukCyr-Medium.woff2") format("woff2"),
+      url("fonts/DrukCyr-Medium.ttf") format("truetype");
+  font-weight:500;
+  font-style:normal;
+  font-display:block;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#EEE8DF;
+  --ink:#1C1914;
+  --ink-dim:#5A4C3C;
+  --ink-mute:#9A8972;
+  --accent:#2E6B52;
+  --accent-ink:#245544;
+  --font-display:"Druk Cyr","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.22,.68,0,1.2);
+}
+html,body{height:100%}
+body{
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:2rem;
+  text-align:center;
+}
+.icon{
+  width:64px;height:64px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;
+  margin:0 auto 2rem;
+  animation:pop .5s var(--ease) both;
+}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+h1{
+  font-family:var(--font-display);
+  font-size:clamp(2.8rem,8vw,6rem);
+  font-weight:500;
+  text-transform:uppercase;
+  line-height:1;
+  letter-spacing:-.01em;
+  margin-bottom:1rem;
+  animation:fadeUp .55s .15s var(--ease) both;
+}
+p{
+  font-size:clamp(1rem,2.5vw,1.2rem);
+  color:var(--ink-dim);
+  line-height:1.6;
+  max-width:400px;
+  margin:0 auto 2.4rem;
+  animation:fadeUp .55s .25s var(--ease) both;
+}
+a.back{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--ink);color:#fff;
+  padding:.85rem 1.8rem;
+  border-radius:8px;
+  font-size:.9rem;font-weight:600;
+  text-decoration:none;
+  letter-spacing:.02em;
+  transition:opacity .2s;
+  animation:fadeUp .55s .35s var(--ease) both;
+}
+a.back:hover{opacity:.82}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div class="icon">✓</div>
+<h1>Дякую!</h1>
+<p>Заявку отримано. Звяжусь з вами протягом години.</p>
+<a class="back" href="index.html">← Повернутися на сайт</a>
+
+<!-- Meta Pixel Lead event -->
+<script>
+if (typeof fbq === 'function') {
+  fbq('track', 'Lead');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Євгеній Ніколайчук — Сайти під ключ, що приносять заявки</title>
+<meta name="description" content="Продумані сайти для локального бізнесу, експертів та компаній. Від структури до запуску. Від 4 днів. Від 500$." />
+<link rel="preload" href="fonts/DrukCyr-Medium.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* ===================================================================
+   taste-skill basis · Awwwards-style light · DrukCyr headings · DV7/M5/D3
+   =================================================================== */
+@font-face{
+  font-family:"Druk Cyr";
+  src:url("fonts/DrukCyr-Medium.woff2") format("woff2"),
+      url("fonts/DrukCyr-Medium.ttf") format("truetype");
+  font-weight:500;
+  font-style:normal;
+  font-display:block;
+}
+:root{
+  --font-display:"Druk Cyr","Helvetica Neue",Helvetica,Arial,sans-serif;
+  /* Warm earthy palette */
+  --bg:        #EEE8DF;
+  --bg-2:      #E6DFD5;
+  --surface:   #FDFAF6;
+  --surface-2: #F2EDE5;
+  --line:      rgba(28,25,20,.09);
+  --line-soft: rgba(28,25,20,.055);
+
+  --ink:       #1C1914;
+  --ink-dim:   #5A4C3C;
+  --ink-mute:  #9A8972;
+
+  /* Primary accent: warm forest green */
+  --accent:      #2E6B52;
+  --accent-ink:  #245544;
+  --accent-soft: #E5F0EB;
+
+  /* Secondary accent: warm orange */
+  --orange:      #F55D1E;
+  --orange-soft: rgba(245,93,30,.12);
+
+  /* Fluid type (Helvetica, tight tracking) */
+  --fs-xs:  clamp(0.76rem, 0.73rem + 0.16vw, 0.85rem);
+  --fs-sm:  clamp(0.9rem, 0.86rem + 0.22vw, 1.0rem);
+  --fs-base:clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  --fs-lg:  clamp(1.2rem, 1.06rem + 0.6vw, 1.5rem);
+  --fs-xl:  clamp(1.7rem, 1.4rem + 1.3vw, 2.4rem);
+  --fs-2xl: clamp(2.1rem, 1.6rem + 2.4vw, 3.4rem);
+  --fs-3xl: clamp(2.5rem, 1.8rem + 3.6vw, 4.4rem);
+
+  /* Spacing (density 3 → airy) */
+  --space-sm: clamp(.8rem, .65rem + .6vw, 1.15rem);
+  --space-md: clamp(1.2rem, .95rem + 1vw, 1.9rem);
+  --space-lg: clamp(2.2rem, 1.6rem + 2.6vw, 3.8rem);
+  --space-xl: clamp(4rem, 2.8rem + 5vw, 7.5rem);
+
+  /* Shape consistency: cards 22px, inputs 14px, buttons full-pill */
+  --r-card: 14px;
+  --r-input: 8px;
+  --r-pill: 999px;
+
+  --shadow:   0 6px 30px rgba(28,25,20,.12);
+  --shadow-sm:0 2px 12px rgba(28,25,20,.08);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --maxw: 1320px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{ -webkit-text-size-adjust:100%; }
+body{
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:var(--fs-base);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* Lenis smooth-scroll required styles */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-stopped{overflow:hidden}
+
+h1,h2{font-family:var(--font-display);font-weight:500;line-height:1.02;letter-spacing:0;text-transform:uppercase}
+h3,h4{font-weight:700;line-height:1.08;letter-spacing:-0.02em}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+section{position:relative}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:clamp(1.1rem,4vw,2.6rem)}
+.wrap-pad{padding-inline:clamp(1.1rem,4vw,2.6rem)}
+
+/* fixed grain (pointer-events none, off scroll containers — perf rule 6.E) */
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- shared ---------- */
+.eyebrow{display:inline-block;font-size:var(--fs-xs);font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-mute)}
+.h2{font-size:var(--fs-2xl)}
+.lead{font-size:var(--fs-base);color:var(--ink-dim);font-weight:400;max-width:38ch;line-height:1.5}
+.muted{color:var(--ink-dim)}
+
+.btn{
+  display:inline-flex;align-items:center;
+  font-family:inherit;font-weight:600;font-size:var(--fs-base);
+  padding:7px 7px 7px 0;border-radius:8px;border:1px solid transparent;cursor:pointer;
+  min-height:56px;line-height:1;white-space:nowrap;
+  transition:transform .2s var(--ease),background .25s,box-shadow .25s,color .25s;
+}
+.btn-lbl{display:flex;align-items:center;padding:0 1.5em;flex:1}
+.btn-sq{
+  display:flex;align-items:center;justify-content:center;
+  width:42px;height:42px;flex:0 0 42px;
+  border-radius:6px;position:relative;overflow:hidden;
+}
+.btn-sq .arr{
+  position:absolute;top:50%;left:50%;width:16px;height:16px;
+  transition:transform .76s var(--ease);
+}
+.btn-sq .arr-out{transform:translate(-50%,-50%)}
+.btn-sq .arr-in {transform:translate(calc(-50% - 280%),calc(-50% + 280%))}
+.btn:hover .btn-sq .arr-out{transform:translate(calc(-50% + 280%),calc(-50% - 280%))}
+.btn:hover .btn-sq .arr-in {transform:translate(-50%,-50%)}
+
+.btn--primary{background:var(--accent);color:var(--surface);box-shadow:var(--shadow-sm)}
+.btn--primary:hover{background:var(--ink);box-shadow:var(--shadow)}
+.btn--primary:active{transform:translateY(0) scale(.985)}
+.btn--primary .btn-sq{background:var(--surface);color:var(--ink)}
+.btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn--ghost:hover{background:var(--surface);border-color:transparent;box-shadow:var(--shadow-sm)}
+.btn--ghost .btn-sq{background:var(--ink);color:var(--surface)}
+.btn--light{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm)}
+.btn--soft{background:var(--accent-soft);color:var(--accent-ink);box-shadow:var(--shadow-sm)}
+.btn--soft:hover{box-shadow:var(--shadow)}
+.btn--soft .btn-sq{background:var(--accent-ink);color:var(--accent-soft)}
+.btn--dark{background:var(--ink);color:#fff;box-shadow:var(--shadow-sm)}
+.btn--dark:hover{box-shadow:var(--shadow)}
+.btn--dark .btn-sq{background:rgba(255,255,255,.15);color:#fff}
+.btn--light:hover{box-shadow:var(--shadow)}
+.btn--light .btn-sq{background:var(--ink);color:var(--surface)}
+.btn--accent{background:var(--accent);color:#fff;box-shadow:var(--shadow-sm)}
+.btn--accent:hover{box-shadow:var(--shadow);filter:brightness(1.1)}
+.btn--accent .btn-sq{background:rgba(255,255,255,.22);color:#fff}
+.btn:not(:has(.btn-sq)){padding:7px}
+.hdr .btn{font-size:var(--fs-sm);min-height:42px;padding:5px 5px 5px 0}
+.hdr .btn .btn-lbl{padding:0 1.1em}
+.hdr .btn .btn-sq{width:32px;height:32px;flex-basis:32px;border-radius:4px}
+
+.plate{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-card);box-shadow:var(--shadow-sm)}
+
+/* reveal: opacity only in CSS — transform handled exclusively by GSAP to avoid class/inline conflict */
+.rv{opacity:0}
+.rv.in{opacity:1;transition:opacity .8s var(--ease)}
+
+/* ===================================================================
+   HEADER  (single line, height ≤ 80px)
+   =================================================================== */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s,border-color .3s;
+  border-bottom:1px solid transparent}
+.hdr.stuck{background:rgba(238,232,223,.88);backdrop-filter:blur(14px);border-bottom-color:var(--line-soft)}
+.nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:70px}
+.brand{font-weight:400;letter-spacing:-.01em;font-size:1.02rem}
+.brand i{color:var(--accent-ink);font-style:normal}
+.nav-links{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:1.7rem;font-size:var(--fs-sm);color:var(--ink-dim)}
+.nav-links a{position:relative;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--accent);transition:width .25s var(--ease)}
+.nav-links a:hover::after{width:100%}
+@media(max-width:900px){.nav-links{display:none}}
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5.5px;width:42px;height:42px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+.burger span{display:block;width:22px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .3s var(--ease),opacity .2s,transform .3s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:900px){.burger{display:flex}}
+.mob-nav{position:fixed;inset:70px 0 0 0;background:var(--bg);z-index:49;display:flex;flex-direction:column;padding:var(--space-md);overflow-y:auto;pointer-events:none;opacity:0;transform:translateY(-10px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.mob-nav.open{pointer-events:auto;opacity:1;transform:translateY(0)}
+.mob-nav a:not(.btn){font-size:var(--fs-xl);font-weight:500;color:var(--ink);padding:1.1rem 0;border-bottom:1px solid var(--line-soft);transition:color .2s}
+.mob-nav a:not(.btn):last-of-type{border-bottom:none}
+.mob-nav a:not(.btn):hover{color:var(--accent-ink)}
+.mob-nav-socials{display:flex;gap:.75rem;margin-top:auto;padding-top:var(--space-md);justify-content:center}
+.mob-nav-socials .social-btn{width:64px;height:64px;display:flex;align-items:center;justify-content:center}
+.mob-nav-socials .social-btn svg{width:26px;height:26px;display:block;flex-shrink:0}
+
+/* ===================================================================
+   HERO — asymmetric split + real image (anti-center, DV7)
+   =================================================================== */
+.hero{padding-top:clamp(7rem,6rem+4vw,9rem);padding-bottom:var(--space-lg)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,3vw,3rem);align-items:center}
+@media(max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:1.2rem}
+  .hero-grid>div:first-child{display:contents}
+  .hero-grid>div:first-child h1{order:1}
+  .hero-grid>div:first-child .lead{order:2;margin-top:0}
+  .hero-visual{order:3}
+  .hero-visual .frame img{object-position:center 60%}
+  .hero-grid>div:first-child .hero-cta{order:4;margin-top:0}
+  .hero-grid>div:first-child .hero-hint{order:4}
+}
+.hero h1{font-size:clamp(2.8rem, 1.4rem + 2.6vw, 4.4rem);line-height:.95;max-width:none;opacity:1}
+.hero h1 em{font-style:normal;color:var(--accent-ink)}
+
+.hero .lead{margin-top:var(--space-md)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:var(--space-md)}
+.hero-hint{font-size:var(--fs-xs);color:var(--ink-mute);letter-spacing:.07em;text-transform:uppercase;margin-top:.85rem}
+
+.hero-visual{position:relative}
+.hero-visual .frame{border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line-soft);aspect-ratio:4/5;background:var(--surface-2)}
+.hero-visual .frame img{width:100%;height:100%;object-fit:cover}
+@media(max-width:920px){.hero-visual .frame{aspect-ratio:16/10}}
+
+/* ===================================================================
+   MARQUEE (one only) — niches
+   =================================================================== */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding-block:1.1rem;background:var(--bg-2);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq 34s linear infinite}
+.mq-grp{display:inline-flex;align-items:center;gap:2.4rem;padding-right:2.4rem;white-space:nowrap;
+  font-size:var(--fs-sm);font-weight:500;color:var(--ink-dim)}
+.mq-grp i{font-style:normal;display:inline-flex;align-items:center;gap:2.4rem}
+.mq-grp i::before{content:"◆";color:var(--orange);font-size:.5em}
+.marquee:hover .mq-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ===================================================================
+   PAIN — asymmetric editorial list (big index + text, divided rows)
+   =================================================================== */
+.pain{padding-block:var(--space-xl);position:relative}
+.pain-head{max-width:24ch;margin-bottom:var(--space-lg);font-size:var(--fs-3xl)}
+.pain-x path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s var(--ease)}
+.pain-x path:nth-child(2){transition-delay:.32s}
+.pain-x.drawn path{stroke-dashoffset:0}
+.pain-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.8rem,1.5vw,1.1rem)}
+@media(max-width:960px){.pain-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.pain-cards{grid-template-columns:1fr}}
+.pain-card{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-card);
+  padding:clamp(1.3rem,2.4vw,1.8rem);display:flex;flex-direction:column;gap:.75rem;
+  box-shadow:var(--shadow-sm);transition:box-shadow .3s var(--ease)}
+.pain-card:hover{box-shadow:var(--shadow)}
+.pain-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.2rem}
+.pain-x{width:52px;height:52px;color:var(--orange);flex-shrink:0}
+.pain-num{font-size:.65rem;letter-spacing:.14em;color:var(--ink-mute);opacity:.4;font-weight:600;padding-top:5px}
+.pain-card h3{font-size:var(--fs-base);font-weight:700;line-height:1.2}
+@media(max-width:480px){.pain-card h3{font-size:var(--fs-lg)}}
+.pain-card p{color:var(--ink-dim);font-size:var(--fs-sm);line-height:1.55}
+
+/* ===================================================================
+   SOLUTION — full-width icon blocks (richer)
+   =================================================================== */
+.solution{padding-block:var(--space-xl);background:var(--surface);border-block:1px solid var(--line)}
+.sol-head{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);align-items:end;margin-bottom:var(--space-lg)}
+.sol-head .h2{margin:.7rem 0 0}
+.sol-head p{color:var(--ink-dim);max-width:44ch}
+@media(max-width:720px){.sol-head{grid-template-columns:1fr}}
+.sol-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(.8rem,1.5vw,1.1rem)}
+.sol-card{border-radius:var(--r-card);background:var(--ink);border:none;
+  padding:clamp(1.5rem,2.8vw,2.2rem);display:flex;flex-direction:column;gap:.8rem;
+  transition:box-shadow .25s var(--ease)}
+.sol-card:hover{box-shadow:0 8px 40px rgba(28,25,20,.35)}
+.sol-card .ic{width:52px;height:52px;border-radius:10px;display:grid;place-items:center;
+  background:var(--accent);color:#fff;flex-shrink:0;margin-bottom:.2rem}
+.sol-card .ic svg{width:26px;height:26px}
+.sol-card h3{font-size:var(--fs-lg);font-weight:700;color:#fff}
+.sol-card p{color:rgba(255,255,255,.55);font-size:var(--fs-sm);line-height:1.55}
+@media(max-width:520px){
+  .sol-grid{grid-template-columns:1fr}
+  .sol-card{flex-direction:row;flex-wrap:wrap;align-items:center;gap:.55rem .9rem}
+  .sol-card .ic{flex-shrink:0;margin-bottom:0}
+  .sol-card h3{flex:1;min-width:0}
+  .sol-card p{flex:0 0 100%;margin-top:0}
+}
+
+/* ===================================================================
+   CTA BAND — centered statement (allowed once)
+   =================================================================== */
+.band{padding-block:var(--space-lg)}
+.band-card{position:relative;overflow:hidden;background:var(--orange);color:#fff;border-radius:var(--r-card);
+  padding:clamp(2.6rem,6vw,5.5rem) clamp(1.5rem,5vw,3rem);text-align:center}
+.band-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(255,255,255,.16),transparent 60%);pointer-events:none}
+.band-card .inner{position:relative;max-width:42ch;margin-inline:auto}
+.band-card .h2{color:#fff;margin-bottom:.8rem}
+.band-card p{color:rgba(255,255,255,.82);margin-bottom:var(--space-md)}
+.band-meta{font-size:var(--fs-xs);color:rgba(255,255,255,.6);margin-top:.9rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* ===================================================================
+   CASES — 3-card grid: photo top, title, button
+   =================================================================== */
+.cases{padding-block:var(--space-xl)}
+.cases-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.2rem;margin-bottom:var(--space-lg)}
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.9rem,1.8vw,1.4rem)}
+@media(max-width:860px){.cases-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cases-grid{grid-template-columns:1fr}}
+.case-card{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:box-shadow .3s var(--ease),transform .3s var(--ease)}
+.case-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+.case-card-img{position:relative;overflow:hidden;aspect-ratio:3/2;background:var(--surface-2)}
+.case-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.case-card:hover .case-card-img img{transform:scale(1.04)}
+.case-card-body{padding:clamp(1.1rem,2vw,1.5rem);display:flex;flex-direction:column;gap:.85rem;flex:1}
+.case-card-body h3{font-size:var(--fs-base);font-weight:700;line-height:1.25;color:var(--ink)}
+.case-card-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:var(--fs-sm);font-weight:600;color:var(--accent-ink);transition:gap .2s var(--ease);margin-top:auto;width:fit-content}
+.case-card-btn .arrow{display:inline-block;transition:transform .2s var(--ease)}
+.case-card-btn:hover{gap:.7rem}
+.case-card-btn:hover .arrow{transform:translateX(3px)}
+.case-card--placeholder .case-card-img{background:var(--surface-2)}
+.case-card--placeholder .case-card-img::after{content:"Скоро";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:600;color:var(--ink-mute);letter-spacing:.08em;text-transform:uppercase}
+
+/* ===================================================================
+   PROCESS — numbered horizontal-aware steps (vertical-stack family)
+   =================================================================== */
+.process{padding-block:var(--space-xl);background:var(--surface);border-block:1px solid var(--line)}
+.proc-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.proc-left{position:sticky;top:calc(var(--hdr-h,64px) + 2rem)}
+.proc-head{margin-bottom:var(--space-lg)}
+.steps{position:relative;display:grid;gap:clamp(2.8rem,5vw,4.5rem);padding-left:6px}
+.steps-track{position:absolute;left:29px;top:24px;width:2px;background:var(--line);z-index:0;border-radius:2px}
+.steps-fill{position:absolute;left:29px;top:24px;width:2px;height:0;background:var(--accent);z-index:1;border-radius:2px}
+.step{position:relative;z-index:3;display:grid;grid-template-columns:48px 1fr auto;gap:clamp(1rem,3vw,2rem);align-items:flex-start}
+.step .node{width:48px;height:48px;border-radius:50%;background:var(--surface);border:2px solid var(--line);
+  display:grid;place-items:center;font-family:var(--font-display);font-size:1.15rem;color:var(--ink-mute);
+  position:relative;z-index:2;transition:background .45s var(--ease),border-color .45s var(--ease),color .45s var(--ease),transform .45s var(--ease)}
+.step.active .node{background:var(--accent);border-color:var(--accent);color:#fff;transform:scale(1.06)}
+.step .body{padding-top:.5rem}
+.step .body h3{font-size:var(--fs-lg);font-weight:600;margin-bottom:.6rem}
+.step .body p{color:var(--ink-dim);font-size:var(--fs-sm);max-width:52ch}
+.step .day{align-self:center;font-size:var(--fs-xs);font-weight:600;color:var(--ink);background:var(--surface-2);
+  border:1px solid var(--line-soft);padding:.45em 1em;border-radius:var(--r-pill);white-space:nowrap;transition:background .45s,color .45s,border-color .45s}
+.step.active .day{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent}
+@media(max-width:760px){
+  .proc-inner{grid-template-columns:1fr}
+  .proc-left{position:static}
+  .step{grid-template-columns:48px 1fr}
+  .step .day{grid-column:2;justify-self:start;margin-top:.4rem}
+}
+
+/* ===================================================================
+   WHY — asymmetric: portrait plate + stacked points
+   =================================================================== */
+.why{padding-block:var(--space-xl)}
+.why-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:var(--space-lg);align-items:start}
+.why-left{display:flex;flex-direction:column}
+.why-right{display:flex;flex-direction:column}
+.why-card{padding:0;overflow:hidden}
+.why-photo .pic{aspect-ratio:1/1;overflow:hidden;background:var(--surface-2)}
+.why-photo .pic img{width:100%;height:100%;object-fit:cover}
+.why-info-card .info{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:clamp(1.3rem,2.5vw,1.8rem)}
+.why-head{margin-bottom:var(--space-lg)}
+@media(max-width:900px){
+  .why-grid{display:flex;flex-direction:column;gap:0}
+  .why-left{display:contents}
+  .why-right{display:contents}
+  .why-head{order:1;margin-bottom:1.4rem}
+  .why-card{order:2;margin-bottom:1.4rem}
+  .why-points-wrap{order:3}
+  .why-photo .pic{aspect-ratio:3/2}
+  .why-info-card .info{padding:1rem}
+}
+.why-photo .pic{aspect-ratio:1/1;overflow:hidden;background:var(--surface-2)}
+.why-photo .pic img{width:100%;height:100%;object-fit:cover}
+.why-info-card .info{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:clamp(1.3rem,2.5vw,1.8rem)}
+.why-info-card .socials{display:flex;gap:.4rem;flex-shrink:0}
+.social-btn{width:38px;height:38px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-dim);transition:background .2s,color .2s,transform .2s}
+.social-btn:hover{background:var(--orange);color:#fff;transform:scale(1.08)}
+.social-btn svg{width:16px;height:16px}
+.why-info-card .info h3{font-size:var(--fs-lg);font-weight:700}
+.why-info-card .info .role{color:var(--ink-mute);font-size:var(--fs-sm);margin-top:.2rem}
+.why-info-card .info .stat{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--line)}
+.why-info-card .info .stat b{font-size:var(--fs-2xl);color:var(--accent-ink);letter-spacing:-.03em}
+.why-info-card .info .stat span{display:block;font-size:var(--fs-sm);color:var(--ink-dim)}
+.why-points{display:grid;gap:0;border-top:1px solid var(--line)}
+.why-point{display:flex;gap:1rem;align-items:flex-start;padding-block:clamp(1.1rem,2.2vw,1.6rem);border-bottom:1px solid var(--line)}
+.why-point .ic{width:40px;height:40px;border-radius:8px;background:var(--accent);color:#fff;display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+.why-point .ic svg{width:20px;height:20px}
+.why-point h4{font-size:var(--fs-base);font-weight:600;margin-bottom:.3rem}
+.why-point p{color:var(--ink-dim);font-size:var(--fs-sm);max-width:62ch}
+
+/* ===================================================================
+   PRICE — rich split card (dark price aside + checklist)
+   =================================================================== */
+.price{padding-block:var(--space-xl);background:var(--surface);border-block:1px solid var(--line)}
+.price-card{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(.8rem,1.6vw,1.2rem);
+  background:var(--bg);border:1px solid var(--line-soft);border-radius:var(--r-card);padding:clamp(.8rem,1.4vw,1.2rem);box-shadow:var(--shadow-sm)}
+@media(max-width:820px){.price-card{grid-template-columns:1fr}}
+.price-aside{position:relative;overflow:hidden;background:var(--ink);color:#fff;border-radius:12px;
+  padding:clamp(1.9rem,3vw,2.8rem);display:flex;flex-direction:column;align-items:center;text-align:center;min-height:280px;gap:var(--space-sm)}
+.price-val{display:flex;flex-direction:row;align-items:baseline;justify-content:center;width:100%;gap:.25em;margin-bottom:.9rem}
+.price-val .from{font-family:var(--font-display);font-size:clamp(5rem,10vw,8.5rem);color:var(--accent-soft);line-height:.88;letter-spacing:-.02em;font-weight:500;text-transform:uppercase}
+.price-val .price-num{font-family:var(--font-display);font-size:clamp(5rem,10vw,8.5rem);color:var(--accent-soft);line-height:.88;letter-spacing:-.02em}
+.price-aside>div{width:100%;text-align:center}
+.price-aside .note{font-size:var(--fs-xs);color:rgba(255,255,255,.55);white-space:nowrap}
+.price-aside .btn{width:100%;display:flex;margin-top:auto;padding-left:7px;justify-content:center}
+.price-aside .btn .btn-sq{display:none}
+.price-aside .btn .btn-lbl{flex:none}
+.price-main{padding:clamp(1.2rem,2vw,1.8rem)}
+.price-main .price-desc{color:var(--ink-dim);font-size:var(--fs-sm);margin-bottom:var(--space-md);max-width:52ch}
+.price-list{display:grid;gap:.7rem;list-style:none}
+.price-list li{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:center;
+  padding:.9rem 1.05rem;background:var(--surface);border:1px solid var(--line-soft);border-radius:8px;font-size:var(--fs-sm);font-weight:500}
+.price-list .ck{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center}
+.price-list .ck svg{width:16px;height:16px}
+@media(max-width:480px){
+  .price-card{padding:.6rem}
+  .price-main{padding:1rem .8rem}
+  .price-list li{padding:.8rem .9rem}
+  .price-list{gap:.5rem}
+}
+
+/* ===================================================================
+   FAQ — accordion (native details)
+   =================================================================== */
+.faq{padding-block:var(--space-xl)}
+.faq-head{text-align:center;max-width:40ch;margin:0 auto var(--space-lg)}
+.faq-head .h2{margin-top:.7rem}
+.faq-list{display:grid;gap:.7rem;max-width:760px;margin-inline:auto}
+details.q{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-sm)}
+details.q summary{list-style:none;cursor:pointer;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;
+  gap:1rem;align-items:center;font-weight:600;font-size:var(--fs-base)}
+details.q summary::-webkit-details-marker{display:none}
+.q .pm{flex:0 0 auto;width:22px;height:22px;position:relative;transition:transform .5s var(--ease)}
+.q .pm::before,.q .pm::after{content:"";position:absolute;inset:0;margin:auto;background:var(--accent);border-radius:2px}
+.q .pm::before{width:13px;height:2px}
+.q .pm::after{width:2px;height:13px;transition:transform .5s var(--ease)}
+details.q[open] .pm{transform:rotate(180deg)}
+details.q[open] .pm::after{transform:scaleY(0)}
+.q .ans{overflow:hidden}
+.q .ans-inner{padding:0 1.5rem 1.3rem;color:var(--ink-dim);font-size:var(--fs-sm)}
+
+/* ===================================================================
+   FINAL CTA — split form
+   =================================================================== */
+.final{padding-block:var(--space-xl)}
+.final-card{padding:clamp(1.8rem,4vw,3.4rem);border-radius:var(--r-card)}
+.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg);align-items:center}
+@media(max-width:760px){.final-grid{grid-template-columns:1fr}}
+.final-grid .h2{margin-bottom:.8rem}
+.final-grid .lead{max-width:30ch}
+form{display:grid;gap:.85rem}
+.field label{display:block;font-size:var(--fs-xs);color:var(--ink-dim);margin-bottom:.35rem;font-weight:600;letter-spacing:.02em}
+.field input{width:100%;padding:.9em 1.05em;border-radius:var(--r-input);border:1px solid var(--line);
+  background:var(--surface-2);color:var(--ink);font-family:inherit;font-size:var(--fs-sm);transition:border-color .2s,box-shadow .2s,background .2s}
+.field input::placeholder{color:var(--ink-mute)}
+.field input:focus{outline:none;border-color:var(--accent);background:var(--surface);box-shadow:0 0 0 3px var(--accent-soft)}
+.btn-row{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-top:1.2rem}
+.btn-row .btn{width:fit-content}
+.tg-note{font-size:var(--fs-sm);color:var(--ink-mute);display:flex;align-items:center;gap:.45rem}
+.tg-note svg{width:16px;height:16px;flex-shrink:0;color:var(--ink-dim)}
+.tg-note a{color:var(--accent-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+#sent{display:none;text-align:center;color:var(--accent-ink);font-weight:600;font-size:var(--fs-sm)}
+
+/* ===================================================================
+   FOOTER
+   =================================================================== */
+.ftr{padding-block:var(--space-md);border-top:1px solid var(--line)}
+.ftr-in{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+  color:var(--ink-mute);font-size:var(--fs-sm)}
+.ftr-links{display:flex;gap:1.4rem}
+.ftr-links a:hover{color:var(--ink)}
+.ftr-socials{display:flex;gap:.5rem}
+.ftr-socials .social-btn{width:44px;height:44px}
+.ftr-socials .social-btn svg{width:19px;height:19px}
+
+/* ===================================================================
+   CUSTOM CURSOR (kept per user request; smaller) — desktop fine-pointer
+   =================================================================== */
+@media (hover:hover) and (pointer:fine){
+  body.has-cursor,body.has-cursor a,body.has-cursor button,body.has-cursor summary,body.has-cursor input{cursor:none}
+  .cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;
+    transform:translate(-50%,-50%);mix-blend-mode:difference}
+  .cur-dot{width:5px;height:5px;background:#fff}
+  .cur-ring{width:24px;height:24px;border:1.5px solid #fff;
+    transition:width .25s var(--ease),height .25s var(--ease),background .25s}
+  .cur-ring.on{width:38px;height:38px;background:oklch(100% 0 0 / .12)}
+}
+
+/* ===================================================================
+   ACCESSIBILITY
+   =================================================================== */
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:6px}
+:focus:not(:focus-visible){outline:none}
+
+/* =================================================================
+   MOBILE FIXES
+   ================================================================= */
+/* Header: compact on mobile */
+@media(max-width:600px){
+  .hero{padding-top:88px}
+  .brand{font-size:.78rem;white-space:nowrap}
+  .hdr .btn{display:none}
+  .hero h1{font-size:2.2rem}
+}
+/* Hero CTA: stack buttons on narrow, primary full width */
+@media(max-width:480px){
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
+}
+/* Hero image: shorter on mobile */
+@media(max-width:920px){
+  .hero-visual .frame{aspect-ratio:1/1;max-height:70vh}
+}
+/* Why card: wrap info row on narrow */
+/* Price number: smaller on narrow */
+@media(max-width:480px){
+  .price-val .from,.price-val .price-num{font-size:3.8rem}
+  .price-aside{min-height:220px}
+}
+/* Section headings (Druk): larger on mobile */
+@media(max-width:480px){
+  .h2{font-size:2.8rem}
+  .pain-head{font-size:3rem}
+  .mob-block{display:block}
+}
+/* Final CTA: heading smaller, btn-row stacked */
+@media(max-width:760px){
+  .final-grid>div:first-child{text-align:center}
+  .final-grid .lead{max-width:none}
+  .final-grid .btn-row{justify-content:center}
+}
+@media(max-width:480px){
+  .final-grid .h2{font-size:var(--fs-xl)}
+  .btn-row{flex-direction:column;align-items:center;gap:.8rem}
+}
+/* Why card: wrap socials on very narrow */
+@media(max-width:360px){
+  .why-info-card .info{flex-wrap:wrap}
+  .why-info-card .socials{width:100%;justify-content:flex-start}
+}
+
+/* Footer: center on narrow */
+@media(max-width:480px){
+  .ftr-in{flex-direction:column;align-items:center;text-align:center;gap:.85rem}
+  .ftr-links{justify-content:center;flex-wrap:wrap;gap:1rem}
+}
+
+/* Sticky CTA — mobile only */
+#sticky-cta{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:48;
+  padding:.75rem 1.1rem calc(.75rem + env(safe-area-inset-bottom));
+  background:rgba(238,232,223,.92);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line-soft);
+  transform:translateY(100%);
+  transition:transform .35s var(--ease);
+}
+#sticky-cta.visible{transform:translateY(0)}
+@media(max-width:900px){#sticky-cta{display:block}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .rv{opacity:1 !important;transform:none !important}
+  .mq-track{animation:none !important}
+  .cur-dot,.cur-ring{display:none !important}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<span id="top-sentinel" aria-hidden="true" style="position:absolute;top:0;height:1px;width:1px"></span>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 5.5L19.5 10 14 12l-2 5.5L10 12 4.5 10 10 8.5 12 3z"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.2 1-2 5-2 5s4-.8 5-2"/><path d="M9 13C13 5 17 4 20 4c0 3-1 7-9 11"/><path d="m9.5 13.5 1 1"/><circle cx="14.5" cy="9.5" r="1.3"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12v3"/><path d="M2 13h20"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24" fill="none"><path d="M21.5 4.5L2.5 11.5l7.2 1.6m11.8-8.6l-3.6 16-7.2-6.4m10.8-9.6L9.7 13.1m0 0v6.9l3.3-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5L2 12.5l7 1M21 5l-2.5 15L9 13.5M21 5L9 13.5m0 0v5.5l3.5-3"/></symbol>
+  <symbol id="i-arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 L13 3"/><path d="M13 3 H7"/><path d="M13 3 V9"/></symbol>
+</svg>
+
+<!-- ===================== HEADER ===================== -->
+<header class="hdr" id="hdr">
+  <div class="wrap nav">
+    <a href="#hero" class="brand">Сайти для бізнесу</a>
+    <nav class="nav-links" aria-label="Головна навігація">
+      <a href="#solution">Рішення</a>
+      <a href="#cases">Роботи</a>
+      <a href="#process">Процес</a>
+      <a href="#price">Ціна</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#final" class="btn btn--primary"><span class="btn-lbl">Отримати розрахунок</span><span class="btn-sq" aria-hidden="true"><svg class="arr arr-out"><use href="#i-arr"/></svg><svg class="arr arr-in"><use href="#i-arr"/></svg></span></a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mob-nav" id="mob-nav" aria-hidden="true">
+  <a href="#solution">Рішення</a>
+  <a href="#cases">Роботи</a>
+  <a href="#process">Процес</a>
+  <a href="#price">Ціна</a>
+  <a href="#faq">FAQ</a>
+  <a href="#final" class="btn btn--primary" style="margin-top:var(--space-md)"><span class="btn-lbl">Отримати розрахунок</span><span class="btn-sq" aria-hidden="true"><svg class="arr arr-out"><use href="#i-arr"/></svg><svg class="arr arr-in"><use href="#i-arr"/></svg></span></a>
+  <div class="mob-nav-socials">
+    <a href="https://www.instagram.com/evgenius.design/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+    <a href="https://t.me/evgenius_design" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram"><svg><use href="#i-telegram"/></svg></a>
+  </div>
+</div>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Сайти, після яких клієнти<br>залишають <em>заявки</em>, а не йдуть<br>до конкурентів</h1>
+      <p class="lead rv">Продумані сайти для локального бізнесу, експертів та компаній, які хочуть рости.</p>
+      <div class="hero-cta rv">
+        <a href="#final" class="btn btn--primary"><span class="btn-lbl">Отримати розрахунок</span><span class="btn-sq" aria-hidden="true"><svg class="arr arr-out"><use href="#i-arr"/></svg><svg class="arr arr-in"><use href="#i-arr"/></svg></span></a>
+        <a href="#cases" class="btn btn--ghost"><span class="btn-lbl">Подивитись роботи</span></a>
+      </div>
+      <p class="hero-hint rv">від 4 днів &nbsp;·&nbsp; від 500$</p>
+    </div>
+    <div class="hero-visual rv">
+      <div class="frame">
+        <img src="photos/hero_photo.avif" width="1000" height="1250" alt="Євгеній Ніколайчук" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <div class="mq-grp"><i>Стоматології</i><i>Фотографи</i><i>Барбершопи</i><i>Психологи</i><i>Агенції нерухомості</i><i>Тренери</i><i>Салони краси</i><i>Юристи</i><i>Забудовники</i><i>Косметологи</i><i>Клініки</i><i>Майстри</i><i>Фітнес-студії</i><i>Ріелтори</i><i>Готелі</i><i>Ресторани</i><i>Зони відпочинку</i><i>Автосервіси</i><i>Дитячі центри</i><i>Магазини</i></div>
+    <div class="mq-grp"><i>Стоматології</i><i>Фотографи</i><i>Барбершопи</i><i>Психологи</i><i>Агенції нерухомості</i><i>Тренери</i><i>Салони краси</i><i>Юристи</i><i>Забудовники</i><i>Косметологи</i><i>Клініки</i><i>Майстри</i><i>Фітнес-студії</i><i>Ріелтори</i><i>Готелі</i><i>Ресторани</i><i>Зони відпочинку</i><i>Автосервіси</i><i>Дитячі центри</i><i>Магазини</i></div>
+  </div>
+</div>
+
+<!-- ===================== PAIN ===================== -->
+<section class="pain" id="pain">
+  <div class="wrap">
+    <h2 class="h2 pain-head rv">Знайома ситуація?</h2>
+    <div class="pain-cards">
+      <div class="pain-card rv">
+        <div class="pain-card-head">
+          <svg class="pain-x" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" aria-hidden="true"><path pathLength="1" d="M10 10 L30 30"/><path pathLength="1" d="M30 10 L10 30"/></svg>
+          <span class="pain-num">01</span>
+        </div>
+        <h3>Інстаграм — не сайт</h3>
+        <p>Сайт = базовий мінімум, а не розкішний максимум для бізнесу в 2026. Без нього менше довіри.</p>
+      </div>
+      <div class="pain-card rv">
+        <div class="pain-card-head">
+          <svg class="pain-x" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" aria-hidden="true"><path pathLength="1" d="M10 10 L30 30"/><path pathLength="1" d="M30 10 L10 30"/></svg>
+          <span class="pain-num">02</span>
+        </div>
+        <h3>Конкуренти випереджають</h3>
+        <p>Бізнес є, але якщо хтось шукає вас у Google, він знаходить конкурентів, а не вас.</p>
+      </div>
+      <div class="pain-card rv">
+        <div class="pain-card-head">
+          <svg class="pain-x" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" aria-hidden="true"><path pathLength="1" d="M10 10 L30 30"/><path pathLength="1" d="M30 10 L10 30"/></svg>
+          <span class="pain-num">03</span>
+        </div>
+        <h3>Нема часу розбиратись</h3>
+        <p>Розумієш що треба сайт — але що там писати, яка структура? Хто це взагалі вирішує?</p>
+      </div>
+      <div class="pain-card rv">
+        <div class="pain-card-head">
+          <svg class="pain-x" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" aria-hidden="true"><path pathLength="1" d="M10 10 L30 30"/><path pathLength="1" d="M30 10 L10 30"/></svg>
+          <span class="pain-num">04</span>
+        </div>
+        <h3>Є сайт, але не продає</h3>
+        <p>Застарілий дизайн або незручний функціонал насправді сильно ріже заявки.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOLUTION ===================== -->
+<section class="solution" id="solution">
+  <div class="wrap">
+    <div class="sol-head rv">
+      <div>
+        <span class="eyebrow">Рішення</span>
+        <h2 class="h2">Сайт під ключ —<br>від структури до запуску</h2>
+      </div>
+      <p>Не потрібно розбиратись у технічних деталях, думати про тексти або ідеї. Ви розповідаєте про бізнес — я роблю все інше.</p>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card rv"><span class="ic"><svg><use href="#i-layout"/></svg></span><h3>Структура під вашу нішу</h3><p>Продумую структуру під вашу нішу та клієнтів</p></div>
+      <div class="sol-card rv"><span class="ic"><svg><use href="#i-pen"/></svg></span><h3>Тексти та контент</h3><p>Пишу грамотні тексти та підбираю контент</p></div>
+      <div class="sol-card rv"><span class="ic"><svg><use href="#i-star"/></svg></span><h3>Дизайн з нуля</h3><p>Проектую дизайн з нуля під ваш бренд та аудиторію</p></div>
+      <div class="sol-card rv"><span class="ic"><svg><use href="#i-gear"/></svg></span><h3>Технічна підготовка і запуск</h3><p>Налаштовую технічні нюанси для запуску сайту</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CASES ===================== -->
+<section class="cases" id="cases">
+  <div class="wrap">
+    <div class="cases-top">
+      <div>
+        <span class="eyebrow rv">Подивіться самі</span>
+        <h2 class="h2 rv">Сайти, які вже працюють</h2>
+      </div>
+    </div>
+    <div class="cases-grid">
+      <a class="case-card rv" href="https://evgeniusdesign.github.io/SPOKII/index.html" target="_blank" rel="noopener">
+        <div class="case-card-img">
+          <img loading="lazy" src="Cases/C1.avif" width="800" height="500" alt="Сайт для масажної студії SPOKII" />
+        </div>
+        <div class="case-card-body">
+          <h3>Сайт для масажної студії SPOKII</h3>
+          <span class="case-card-btn">Переглянути сайт <span class="arrow">→</span></span>
+        </div>
+      </a>
+      <a class="case-card rv" href="https://allure.ua" target="_blank" rel="noopener">
+        <div class="case-card-img">
+          <img loading="lazy" src="Cases/C2.avif" width="800" height="500" alt="Сайт для стоматологічної клініки Allure Dental" />
+        </div>
+        <div class="case-card-body">
+          <h3>Сайт для стоматологічної клініки ALLURE DENTAL</h3>
+          <span class="case-card-btn">Переглянути сайт <span class="arrow">→</span></span>
+        </div>
+      </a>
+      <a class="case-card rv" href="#" id="video-case-btn">
+        <div class="case-card-img">
+          <img loading="lazy" src="Cases/C3.avif" width="800" height="500" alt="Відео-кейс" />
+        </div>
+        <div class="case-card-body">
+          <h3>Сайт для запуску курсу «Старт у таргеті» Влада Лиманюка</h3>
+          <span class="case-card-btn">Переглянути відео <span class="arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="band">
+  <div class="wrap">
+    <div class="band-card rv">
+      <div class="inner">
+        <h2 class="h2">Готові отримати сайт, який працює на <span class="mob-block">ваш бізнес?</span></h2>
+        <p>Зроблю розрахунок під вашу нішу.</p>
+        <a href="#final" class="btn btn--dark"><span class="btn-lbl">Замовити сайт</span><span class="btn-sq" aria-hidden="true"><svg class="arr arr-out"><use href="#i-arr"/></svg><svg class="arr arr-in"><use href="#i-arr"/></svg></span></a>
+        <p class="band-meta">Від 4 днів &nbsp;·&nbsp; від 500$</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="proc-inner">
+      <div class="proc-left">
+        <div class="proc-head rv">
+          <span class="eyebrow">Від знайомства до запуску</span>
+          <h2 class="h2" style="margin-top:.5rem">Як проходить процес</h2>
+        </div>
+      </div>
+      <div class="proc-right">
+        <div class="steps">
+          <div class="steps-track" aria-hidden="true"></div>
+          <div class="steps-fill" aria-hidden="true"></div>
+          <div class="step rv">
+            <span class="node">1</span>
+            <div class="body"><h3>Заявка і знайомство</h3><p>Ви залишаєте заявку — я зв'язуюсь і ставлю кілька питань про бізнес, задачу і ваших клієнтів.</p></div>
+            <span class="day">День 1</span>
+          </div>
+          <div class="step rv">
+            <span class="node">2</span>
+            <div class="body"><h3>Бриф і структура</h3><p>Визначаємо, що має бути на сайті, яка структура і який зміст. Ви нічого не вигадуєте, я веду вас питаннями.</p></div>
+            <span class="day">День 1–2</span>
+          </div>
+          <div class="step rv">
+            <span class="node">3</span>
+            <div class="body"><h3>Дизайн</h3><p>Створюю макет сайту і показую вам. Обговорюємо, за потребою вносимо правки — і затверджуємо.</p></div>
+            <span class="day">День 2–3</span>
+          </div>
+          <div class="step rv">
+            <span class="node">4</span>
+            <div class="body"><h3>Розробка</h3><p>Переношу затверджений дизайн у готовий сайт.</p></div>
+            <span class="day">День 3–4</span>
+          </div>
+          <div class="step rv">
+            <span class="node">5</span>
+            <div class="body"><h3>Запуск</h3><p>Фінальна перевірка, технічне налаштування і запуск. Сайт готовий приймати заявки.</p></div>
+            <span class="day">День 4+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY ===================== -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="why-card plate rv">
+          <div class="why-photo">
+            <div class="pic"><img loading="lazy" src="photos/aboutme_photo.avif" width="700" height="700" alt="Євгеній Ніколайчук" /></div>
+          </div>
+          <div class="why-info-card">
+            <div class="info">
+              <div><h3>Євгеній Ніколайчук</h3>
+              <div class="role">Розробник сайтів під ключ</div></div>
+              <div class="socials"><a href="https://www.instagram.com/evgenius.design/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a><a href="https://t.me/evgenius_design" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram"><svg><use href="#i-telegram"/></svg></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-right">
+        <div class="why-head rv">
+          <span class="eyebrow">Чому я</span>
+          <h2 class="h2" style="margin-top:.5rem">Не просто веб-дизайнер<br>— партнер у вашій справі</h2>
+        </div>
+        <div class="why-points-wrap">
+          <div class="why-points">
+            <div class="why-point rv"><span class="ic"><svg><use href="#i-star"/></svg></span><div><h4>6 років у дизайні та маркетингу</h4><p>За 6 років дещо зрозумів: красивий сайт — це добре, але сайт який приносить клієнтів — ще краще</p></div></div>
+            <div class="why-point rv"><span class="ic"><svg><use href="#i-gear"/></svg></span><div><h4>Розуміння бізнес-процесів</h4><p>Знаю шлях клієнта до заявки і проєктую кожен блок так, щоб користувач рухався саме туди.</p></div></div>
+            <div class="why-point rv"><span class="ic"><svg><use href="#i-briefcase"/></svg></span><div><h4>Особиста взаємодія</h4><p>Веду проєкт без «менеджерів» та затримок у комунікації. З вами на кожному етапі.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICE ===================== -->
+<section class="price" id="price">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:var(--space-lg);text-align:center">
+      <span class="eyebrow">Ціна</span>
+      <h2 class="h2" style="margin-top:.7rem">Вартість розробки</h2>
+    </div>
+    <div class="price-card rv">
+      <div class="price-aside">
+        <div>
+          <div class="price-val"><span class="from">від</span><span class="price-num">500$</span></div>
+          <span class="note">Фінальна вартість — після прорахунку</span>
+        </div>
+        <a href="#final" class="btn btn--soft"><span class="btn-lbl">Дізнатись точну вартість</span><span class="btn-sq" aria-hidden="true"><svg class="arr arr-out"><use href="#i-arr"/></svg><svg class="arr arr-in"><use href="#i-arr"/></svg></span></a>
+      </div>
+      <div class="price-main">
+        <p class="price-desc">Вартість залежить від формату сайту, його функціоналу, обсягу сторінки та інтеграцій. Розрахунок індивідуальний, після ознайомлення з вашим бізнесом.</p>
+        <ul class="price-list">
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span> Ціна фіксується до старту. Без «доплатіть ще трохи» в кінці</li>
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span> Оплата частинами. Підбираю зручний для вас формат</li>
+          <li><span class="ck"><svg><use href="#i-check"/></svg></span> Той самий результат, без переплат агенціям</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-head rv">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="h2">Є питання? Ось відповіді</h2>
+    </div>
+    <div class="faq-list">
+      <details class="q rv">
+        <summary>Скільки часу займе мій сайт? <span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><div class="ans-inner">Від 4 днів, залежно від обсягу і складності. Орієнтовні терміни закладаю на старті, після того як проведемо брифінг.</div></div>
+      </details>
+      <details class="q rv">
+        <summary>Мені потрібно самому писати тексти і готувати контент? <span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><div class="ans-inner">Ні. Тексти пишу я, на основі інформації, яку ви розповідаєте про бізнес. Або надаєте свої тексти, я відредагую за потреби. Від вас потрібні фото і відповіді на кілька питань. Якщо є готовий контент, чудово, використаємо його. Якщо ні, знайдемо стокові, або згенеруємо за допомогою штучного інтелекту.</div></div>
+      </details>
+      <details class="q rv">
+        <summary>Що якщо мені не сподобається дизайн? <span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><div class="ans-inner">Показую макет до початку розробки і вносимо правки. Ви затверджуєте дизайн, і тільки після цього починається верстка. Тому «не те, що хотів» виключено.</div></div>
+      </details>
+      <details class="q rv">
+        <summary>Чи є підтримка після запуску? <span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><div class="ans-inner">Так. Після запуску залишаюсь на зв'язку, дрібні правки і питання по сайту вирішуємо разом.</div></div>
+      </details>
+      <details class="q rv">
+        <summary>Як відбувається оплата? <span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><div class="ans-inner">Частинами, підбираю зручну кількість платежів для вас. Як правило, це 3 платежі: до початку роботи, після затвердження дизайну, і після здачі готового сайту.</div></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final" id="final">
+  <div class="wrap">
+    <div class="final-card plate rv">
+      <div class="final-grid">
+        <div>
+          <h2 class="h2" style="font-size:var(--fs-3xl)">Давайте створимо<br>ваш сайт</h2>
+          <p class="lead">Залиште заявку — зв'яжусь <span class="mob-block">протягом години</span></p>
+        </div>
+        <div>
+          <form id="lead-form">
+            <div class="field">
+              <label for="name">Ім'я</label>
+              <input id="name" name="name" type="text" placeholder="Як до вас звертатися?" required />
+            </div>
+            <div class="field">
+              <label for="contact">Телефон або Telegram</label>
+              <input id="contact" name="contact" type="text" placeholder="+380... або @username" required />
+            </div>
+            <div class="field">
+              <label for="biz">Ваш бізнес</label>
+              <input id="biz" name="biz" type="text" placeholder="напр. стоматологія" />
+            </div>
+            <div class="btn-row">
+              <button type="submit" class="btn btn--primary"><span class="btn-lbl">Замовити сайт</span><span class="btn-sq" aria-hidden="true"><svg class="arr arr-out"><use href="#i-arr"/></svg><svg class="arr arr-in"><use href="#i-arr"/></svg></span></button>
+              <p class="tg-note"><svg><use href="#i-tg"/></svg>Або напишіть напряму в <a href="https://t.me/evgenius_design" target="_blank" rel="noopener">Telegram</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== STICKY CTA (mobile) ===================== -->
+<div id="sticky-cta" aria-hidden="true">
+  <a href="#final" class="btn btn--primary" style="width:100%;justify-content:center"><span class="btn-lbl">Замовити сайт</span><span class="btn-sq" aria-hidden="true"><svg class="arr arr-out"><use href="#i-arr"/></svg><svg class="arr arr-in"><use href="#i-arr"/></svg></span></a>
+</div>
+
+<!-- ===================== VIDEO MODAL ===================== -->
+<div id="video-modal" aria-modal="true" role="dialog" aria-label="Відео кейсу" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(28,25,20,.82);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1.5rem">
+  <div style="position:relative;height:min(85vh,700px);aspect-ratio:9/16">
+    <iframe id="video-iframe" src="" allow="autoplay;encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;border-radius:var(--r-card)"></iframe>
+    <button id="video-close" aria-label="Закрити" style="position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;background:rgba(28,25,20,.7);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;line-height:1">×</button>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <a href="#hero" class="brand">Сайти для бізнесу © 2026</a>
+    <nav class="ftr-links" aria-label="Футер">
+      <a href="#solution">Рішення</a>
+      <a href="#process">Процес</a>
+      <a href="#price">Ціна</a>
+      <a href="#final">Контакти</a>
+    </nav>
+    <div class="ftr-socials"><a href="https://www.instagram.com/evgenius.design/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a><a href="https://t.me/evgenius_design" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram"><svg><use href="#i-telegram"/></svg></a></div>
+  </div>
+</footer>
+
+<!-- ===================== LIBS ===================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+/* Header stuck state via IntersectionObserver (no banned window-scroll listener) */
+const hdr = document.getElementById('hdr');
+const sentinel = document.getElementById('top-sentinel');
+new IntersectionObserver(([e]) => hdr.classList.toggle('stuck', !e.isIntersecting),
+  {rootMargin:'-8px 0px 0px 0px'}).observe(sentinel);
+
+/* Lenis inertial smooth scroll — snappier (was too slow before) */
+let lenis = null;
+if (!reduce && window.Lenis) {
+  lenis = new Lenis({
+    lerp: 0.16,            // higher = snappier, less drift
+    wheelMultiplier: 1.0,
+    smoothWheel: true
+  });
+  if (window.gsap && window.ScrollTrigger) {
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+}
+
+/* Scroll reveals (hierarchy on entry) */
+if (!reduce && window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.fromTo('#hero .rv', {opacity:0, y:16}, {opacity:1, y:0, duration:1, stagger:.12, ease:'power2.out'});
+  const nonHeroRv = [...document.querySelectorAll('.rv')].filter(el => !el.closest('#hero'));
+  if (nonHeroRv.length) {
+    ScrollTrigger.batch(nonHeroRv, {
+      start:'top 88%',
+      once: true,
+      onEnter: b => gsap.fromTo(b, {opacity:0, y:14}, {opacity:1, y:0, duration:1, stagger:.11, ease:'power2.out', overwrite:true})
+    });
+  }
+
+  /* hero fallback: if GSAP didn't run, reveal hero elements */
+  setTimeout(()=>{
+    document.querySelectorAll('#hero .rv').forEach(el=>{
+      if(parseFloat(getComputedStyle(el).opacity)<0.5) el.style.opacity='1';
+    });
+  }, 800);
+
+  /* anchor clicks: fixed duration scroll instead of lerp drift */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, {duration:1.1, easing:t=>1-Math.pow(1-t,4)});
+      else target.scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  /* pain cards: draw X marks one by one as section enters */
+  ScrollTrigger.create({
+    trigger:'.pain-cards', start:'top 78%', once:true,
+    onEnter:()=>{
+      document.querySelectorAll('.pain-x').forEach((x,i)=>
+        setTimeout(()=>x.classList.add('drawn'), i*900));
+    }
+  });
+
+  new IntersectionObserver((entries, obs) => {
+    if (!entries[0].isIntersecting) return;
+    obs.disconnect();
+    const el = document.querySelector('.price-num');
+    const dur = 2200, start = performance.now();
+    (function tick(now){
+      const t = Math.min((now - start) / dur, 1);
+      const e = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+      el.textContent = Math.round(e * 500) + '$';
+      if (t < 1) requestAnimationFrame(tick);
+    })(performance.now());
+  }, {threshold: 0.4}).observe(document.querySelector('.price-aside'));
+
+  /* process: scroll-fill line + activate steps */
+  const steps = document.querySelector('.steps');
+  const fill  = document.querySelector('.steps-fill');
+  const track = document.querySelector('.steps-track');
+  function calibrateSteps(){
+    const nodes = document.querySelectorAll('.step .node');
+    if(!steps||!nodes.length) return;
+    const st = steps.getBoundingClientRect().top;
+    const lineH = nodes[nodes.length-1].getBoundingClientRect().top - st;
+    if(track) track.style.height = lineH+'px';
+    return lineH;
+  }
+  const lineMax = calibrateSteps();
+  window.addEventListener('resize', calibrateSteps, {passive:true});
+  if(steps && fill){
+    ScrollTrigger.create({
+      trigger:steps, start:'top 60%', end:'bottom 65%', scrub:true,
+      onUpdate:self=>{ fill.style.height=(self.progress*(lineMax||steps.clientHeight-48))+'px'; }
+    });
+    gsap.utils.toArray('.step').forEach(s=>{
+      ScrollTrigger.create({trigger:s, start:'top 62%',
+        onEnter:()=>s.classList.add('active'),
+        onLeaveBack:()=>s.classList.remove('active')});
+    });
+  }
+} else {
+  document.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
+  document.querySelectorAll('.pain-x').forEach(x => x.classList.add('drawn'));
+  document.querySelectorAll('.step').forEach(s=>s.classList.add('active'));
+  const f=document.querySelector('.steps-fill'); if(f) f.style.height='100%';
+  const t=document.querySelector('.steps-track'); if(t) t.style.height='100%';
+}
+
+/* FAQ — smooth slow expand/collapse (keeps native <details> a11y) */
+if (!reduce && window.gsap) {
+  document.querySelectorAll('details.q').forEach(d => {
+    const sum = d.querySelector('summary');
+    const ans = d.querySelector('.ans');
+    sum.addEventListener('click', e => {
+      e.preventDefault();
+      if (d.open) {
+        gsap.to(ans, {height:0, duration:.5, ease:'power2.inOut',
+          onComplete:()=>{ d.open = false; gsap.set(ans,{height:'auto'}); }});
+      } else {
+        d.open = true;
+        gsap.fromTo(ans, {height:0}, {height:ans.scrollHeight, duration:.6, ease:'power2.out',
+          onComplete:()=>gsap.set(ans,{height:'auto'})});
+      }
+    });
+  });
+}
+
+/* Subtle parallax tilt on case cards */
+if (!reduce && finePointer && window.VanillaTilt) {
+  VanillaTilt.init(document.querySelectorAll('.case-visual'), {
+    max:4, speed:500, glare:true, 'max-glare':0.1, scale:1.0, gyroscope:false
+  });
+}
+
+/* Custom cursor — small */
+if (!reduce && finePointer) {
+  const dot = document.createElement('div');
+  const ring = document.createElement('div');
+  dot.className = 'cur-dot'; ring.className = 'cur-ring';
+  document.body.append(dot, ring);
+  document.body.classList.add('has-cursor');
+  let mx=innerWidth/2, my=innerHeight/2, rx=mx, ry=my;
+  addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  }, {passive:true});
+  (function loop(){ rx+=(mx-rx)*0.2; ry+=(my-ry)*0.2;
+    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button,summary,input').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('on'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('on'));
+  });
+}
+
+/* Burger menu */
+const burger=document.getElementById('burger');
+const mobNav=document.getElementById('mob-nav');
+if(burger&&mobNav){
+  burger.addEventListener('click',()=>{
+    const open=mobNav.classList.toggle('open');
+    burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+    mobNav.setAttribute('aria-hidden',!open);
+    document.body.style.overflow=open?'hidden':'';
+  });
+  mobNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    mobNav.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    mobNav.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }));
+}
+
+/* Sticky CTA visibility */
+(function(){
+  const cta   = document.getElementById('sticky-cta');
+  const hero  = document.getElementById('hero');
+  const final = document.getElementById('final');
+  if(!cta || !hero || !final) return;
+
+  let heroGone = false, finalVisible = false;
+
+  new IntersectionObserver(([e]) => {
+    heroGone = !e.isIntersecting;
+    cta.classList.toggle('visible', heroGone && !finalVisible);
+    cta.setAttribute('aria-hidden', !(heroGone && !finalVisible));
+  }, {threshold: 0}).observe(hero);
+
+  new IntersectionObserver(([e]) => {
+    finalVisible = e.isIntersecting;
+    cta.classList.toggle('visible', heroGone && !finalVisible);
+    cta.setAttribute('aria-hidden', !(heroGone && !finalVisible));
+  }, {threshold: 0.1}).observe(final);
+})();
+
+/* Video modal */
+(function(){
+  const btn   = document.getElementById('video-case-btn');
+  const modal = document.getElementById('video-modal');
+  const iframe= document.getElementById('video-iframe');
+  const close = document.getElementById('video-close');
+  const YT_URL = 'https://player.vimeo.com/video/1205821164?autoplay=1';
+
+  function openModal(e){
+    e.preventDefault();
+    iframe.src = YT_URL;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.style.display = 'none';
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openModal);
+  close.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+})();
+
+/* Telegram form */
+(function(){
+  const form = document.getElementById('lead-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const name    = form.querySelector('#name').value.trim();
+    const contact = form.querySelector('#contact').value.trim();
+    const biz     = form.querySelector('#biz').value.trim();
+    const btn     = form.querySelector('button[type=submit]');
+    const lbl     = btn.querySelector('.btn-lbl');
+    const orig    = lbl.textContent;
+
+    lbl.textContent = 'Надсилаємо…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/.netlify/functions/send-lead', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({name, contact, biz})
+      });
+      if (!res.ok) throw new Error();
+      window.location.href = 'thank-you.html';
+    } catch {
+      lbl.textContent = 'Помилка — спробуйте ще';
+      setTimeout(() => { lbl.textContent = orig; btn.disabled = false; }, 3000);
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
