@@ -43,6 +43,9 @@ function sendToCapi({ contact, eventId, url, headers }) {
       user_data: userData
     }]
   };
+  if (process.env.FB_TEST_EVENT_CODE) {
+    payload.test_event_code = process.env.FB_TEST_EVENT_CODE;
+  }
 
   return fetch(`https://graph.facebook.com/v19.0/${FB_PIXEL_ID}/events?access_token=${CAPI_TOKEN}`, {
     method: 'POST',
