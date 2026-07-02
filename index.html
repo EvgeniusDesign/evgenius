@@ -2,6 +2,7 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8" />
+<script>if (location.hash) history.replaceState(null, '', location.pathname + location.search);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Євгеній Ніколайчук — Сайти під ключ, що приносять заявки</title>
 <meta name="description" content="Продумані сайти для локального бізнесу, експертів та компаній. Від структури до запуску. Від 4 днів. Від 500$." />
@@ -1093,6 +1094,16 @@ if (!reduce && window.gsap && window.ScrollTrigger) {
   const f=document.querySelector('.steps-fill'); if(f) f.style.height='100%';
   const t=document.querySelector('.steps-track'); if(t) t.style.height='100%';
 }
+
+/* Recalibrate scroll positions once fonts/images settle (prevents
+   Lenis/ScrollTrigger drift causing a jump right after first paint) */
+function resyncScroll(){
+  if (lenis) lenis.resize();
+  if (window.ScrollTrigger) ScrollTrigger.refresh();
+  if (typeof calibrateSteps === 'function') calibrateSteps();
+}
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(resyncScroll);
+window.addEventListener('load', resyncScroll);
 
 /* FAQ — smooth slow expand/collapse (keeps native <details> a11y) */
 if (!reduce && window.gsap) {
