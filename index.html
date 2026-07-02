@@ -1226,14 +1226,16 @@ if(burger&&mobNav){
     lbl.textContent = 'Надсилаємо…';
     btn.disabled = true;
 
+    const eventId = (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(16).slice(2));
+
     try {
       const res = await fetch('/.netlify/functions/send-lead', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({name, contact, biz})
+        body: JSON.stringify({name, contact, biz, eventId, url: window.location.href})
       });
       if (!res.ok) throw new Error();
-      if (typeof fbq === 'function') fbq('track', 'Lead');
+      if (typeof fbq === 'function') fbq('track', 'Lead', {}, {eventID: eventId});
       window.location.href = 'thank-you.html';
     } catch {
       lbl.textContent = 'Помилка — спробуйте ще';
