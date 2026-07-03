@@ -984,6 +984,35 @@ src="https://www.facebook.com/tr?id=1375851101356106&ev=PageView&noscript=1"
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
+/* Ghost-tap guard.
+   When the Instagram/Facebook in-app browser opens this page, the finger-tap
+   that opened it can "bleed through" onto whichever in-page anchor renders
+   under it — and since almost every CTA points to #final, that stray click
+   instantly scrolls new visitors down to the contact form. A genuine tap is
+   always preceded by a pointerdown on THIS page and never happens within the
+   first moment after first paint. Drop hash-anchor clicks that fail those
+   tests (runs in capture phase, so it also covers the reduced-motion path). */
+(function(){
+  const loadedAt = performance.now();
+  let lastPointerAt = -1e9;
+  const markPress = () => { lastPointerAt = performance.now(); };
+  addEventListener('pointerdown', markPress, {capture:true, passive:true});
+  addEventListener('touchstart', markPress, {capture:true, passive:true});
+  addEventListener('mousedown', markPress, {capture:true, passive:true});
+  document.addEventListener('click', e => {
+    const a = e.target && e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const dt = performance.now() - loadedAt;
+    const hadRealPress = performance.now() - lastPointerAt < 700;
+    const keyboard = e.detail === 0;               // Enter on a focused link (assistive/scripted)
+    // Ghost if it fires in the opening window, or later with no real press
+    // preceding it. A genuine tap always has a press, so real users are never
+    // blocked once they've actually touched the screen.
+    const ghost = !keyboard && (dt < 600 || (dt < 2500 && !hadRealPress));
+    if (ghost) { e.preventDefault(); e.stopImmediatePropagation(); }
+  }, {capture:true});
+})();
+
 /* Header stuck state via IntersectionObserver (no banned window-scroll listener) */
 const hdr = document.getElementById('hdr');
 const sentinel = document.getElementById('top-sentinel');
